@@ -1,5 +1,24 @@
 def word_count(s):
-    # Your code here
+    dictionary = {}
+    phrase = ""
+
+    chars_to_ignore = '":;,.-+=/\\|[]{}()*^&'
+    # find our characters
+    for char in s:
+        if char not in chars_to_ignore:
+            phrase += char
+    words = phrase.lower().split()
+
+    # count each word
+    for word in words:        
+        if word not in dictionary:            
+            dictionary[word] = 1
+        else:
+            dictionary[word] += 1
+
+    return dictionary
+
+
 
 
 
