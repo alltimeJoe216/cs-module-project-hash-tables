@@ -48,47 +48,37 @@ class LinkedList:
             self.head = new_node            
             self.tail = new_node
         else:
-            #point new_node next to current head node (which points to the next and so on)
+            # set new node to head
             new_node.set_next(self.head)
-            #change head to new_node since it points, the list continues
+            #change head to new_node 
             self.head = new_node
         self.size += 1
         return value
 
     def add_to_tail(self, key, value):        
-        # 1. create the Node from the value 
+        # create the Node from the value 
         new_node = HashTableEntry(key, value)
-        # So, what do we do if tail is None? 
-        # What's the rule we want to set to indicate that the linked
-        # list is empty? 
-        # Would it be better to check the head? 
-        # Let's check them both: an empty linked list has an empty 
-        # head and an empty tail 
+  
         if self.is_empty():
-            # in a one-element linked list, what should head and tail 
-            # be referring to? 
-            # have both head and tail referring to the single node 
+           
             self.head = new_node
-            # set the new node to be the tail 
             self.tail = new_node        
         else:
-            # These steps assume that the tail is already referring
-            # to a Node 
-            # 2. set the old tail's next to refer to the new Node 
+            # tail already referring to a node? 
             self.tail.set_next(new_node)
-            # 3. reassign self.tail to refer to the new Node 
+            #reassign self.tail to refer to the new node
             self.tail = new_node
         self.size += 1
 
     def remove_head(self):
-        # if we have an empty linked list 
+        # is there an empty LL?
+
         if self.is_empty():
             return
-        # what if we only have a single elem in the linked list?
-        # both head and tail are pointing at the same Node 
+        # head and tail are pointing at the same Node 
         if not self.head.get_next():
             head = self.head 
-            # delete the linked list's head reference 
+            # delete the LLs head ref
             self.head = None
             # also delete the linked list's tail reference 
             self.tail = None 
@@ -107,15 +97,11 @@ class LinkedList:
             val = self.head.value
             self.remove_head()
             return val
-        # if we have a non-empty linked list 
-        # we have to start at the head and move down the linked list 
-        # until we get to the node right before the tail 
-        # iterate over our linked list 
+        
         current = self.head
 
         while current.get_next() and current.get_next() is not self.tail:
             current = current.get_next()
-        # at this point, `current` is the node right before the tail
         # store the value we're about to remove
         val = self.tail.get_value()
         # move self.tail to the Node right before
@@ -140,7 +126,7 @@ class LinkedList:
                 return cur.value
             #store the previous node for the next iteration
             prev = prev.next
-            #set next for next iter
+            #set next for next iteratioin
             cur = cur.next
         
         return None     
@@ -163,17 +149,15 @@ class LinkedList:
         if not self.head:
             return 0
         
-        # reference to the largest value we've seen so far
+        # reference to the largest value 
         max_value = self.head.get_value()
-        # reference to our current node as we traverse the list
+        # reference to our current node 
         current = self.head.get_next()
-        # track count        
-        #i = 1
-        # check to see if we're still at a valid list node        
+        
+        # check to see if we're still at a valid node        
         while current:
-            #i += 1
-            # check to see if the current value is greater than the max_value
             if current.get_value() > max_value:
+            	
                 # if so, update our max_value variable
                 max_value = current.get_value()            
                 
