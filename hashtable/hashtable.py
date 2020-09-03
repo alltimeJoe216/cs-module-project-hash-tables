@@ -71,8 +71,7 @@ class LinkedList:
         self.size += 1
 
     def remove_head(self):
-        # is there an empty LL?
-
+        # is the LL empty?
         if self.is_empty():
             return
         # head and tail are pointing at the same Node 
@@ -157,7 +156,7 @@ class LinkedList:
         # check to see if we're still at a valid node        
         while current:
             if current.get_value() > max_value:
-            	
+
                 # if so, update our max_value variable
                 max_value = current.get_value()            
                 
